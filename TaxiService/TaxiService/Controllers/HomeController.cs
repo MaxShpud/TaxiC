@@ -84,6 +84,9 @@ namespace TaxiService.Controllers
                 return RedirectToAction("SignIn", "Login");
             }
 
+            db.AppUsers.Attach(user);
+            db.Entry(user).Reload();
+
             if (user.Role != UserRole.Driver)
             {
                 return new HttpUnauthorizedResult();
